@@ -1,1 +1,40 @@
+@import './fonts.css';
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Open Sans Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+  --color-border: var(--color-mist-400);
+  --color-primary: var(--color-mist-800);
+}
+
+@layer base {
+}
+
+@layer components {
+  html,
+  body {
+    @apply text-primary;
+  }
+
+  #app {
+    @apply h-screen grid grid-rows-[4rem_1fr_2rem] gap-4 justify-items-center;
+  }
+
+  header,
+  footer {
+    @apply flex justify-center items-center justify-self-stretch gap-2;
+  }
+
+  header {
+    @apply border-b border-b-border;
+  }
+
+  footer {
+    @apply font-mono border-t border-t-border;
+  }
+
+  h1 {
+    @apply text-4xl font-semibold;
+  }
+}
