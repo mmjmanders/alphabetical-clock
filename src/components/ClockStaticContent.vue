@@ -9,7 +9,7 @@ const { hours } = useWords()
 
 const positions = readonly(
   hours.map((hour, i, arr) => {
-    const angle = (i / arr.length) * (Math.PI * 2) - Math.PI / 2
+    const angle = (i / arr.length) * (2 * Math.PI) - (2 * Math.PI) / 4
     const x = textRadius * Math.cos(angle)
     const y = textRadius * Math.sin(angle)
     return { x, y, hour }
@@ -21,6 +21,7 @@ const positions = readonly(
   <g>
     <circle :r="radius" stroke-width="5" class="outer-circle" />
     <path
+      class="hour-tick"
       v-for="hour in 12"
       :key="hour"
       :d="`M ${radius * 0.9} 0 L ${radius * 0.99} 0`"
@@ -28,6 +29,7 @@ const positions = readonly(
       :transform="`rotate(${(360 / 12) * hour})`"
     />
     <path
+      class="minute-tick"
       v-for="minute in 60"
       :key="minute"
       :d="`M ${radius * 0.95} 0 L ${radius * 0.99} 0`"
@@ -35,6 +37,7 @@ const positions = readonly(
       :transform="`rotate(${(360 / 60) * minute})`"
     />
     <text
+      class="hour-text"
       v-for="{ x, y, hour } in positions"
       :key="hour"
       :x="x"
@@ -53,7 +56,7 @@ const positions = readonly(
   @apply stroke-primary fill-clock-background;
 }
 
-text {
+.hour-text {
   @apply text-primary text-5xl font-semibold;
 }
 

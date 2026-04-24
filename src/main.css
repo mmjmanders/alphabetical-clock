@@ -10,9 +10,6 @@
   --color-clock-background: var(--color-mist-50);
 }
 
-@layer base {
-}
-
 @layer components {
   html,
   body {
