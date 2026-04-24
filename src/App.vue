@@ -1,11 +1,22 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Icon } from '@iconify/vue'
+import ClockComponent from '@/components/ClockComponent.vue'
+
+const { VITE_APP_VERSION: version } = import.meta.env
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <header>
+    <Icon class="size-8" icon="material-symbols-light:clock-arrow-down-rounded" />
+    <h1>Alphabetical Clock</h1>
+  </header>
+  <main>
+    <ClockComponent />
+  </main>
+  <footer>
+    <Icon icon="material-symbols-light:commit-rounded" />
+    {{ version }}
+  </footer>
 </template>
 
 <style scoped></style>

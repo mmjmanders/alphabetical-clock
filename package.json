@@ -21,38 +21,42 @@
     "check": "run-p -cl --aggregate-output eslint oxlint type-check"
   },
   "dependencies": {
-    "tailwindcss": "^4.2.2",
-    "vue": "^3.5.32"
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/open-sans": "^5.2.7",
+    "tailwindcss": "^4.2.4",
+    "to-words": "^5.5.0",
+    "vue": "^3.5.33"
   },
   "devDependencies": {
+    "@iconify/vue": "^5.0.0",
     "@playwright/test": "^1.59.1",
     "@prettier/plugin-xml": "^3.4.2",
-    "@tailwindcss/vite": "^4.2.2",
+    "@tailwindcss/vite": "^4.2.4",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.12.2",
     "@vitejs/plugin-vue": "^6.0.6",
     "@vue/eslint-config-typescript": "^14.7.0",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^10.2.0",
+    "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-oxlint": "^1.60.0",
-    "eslint-plugin-playwright": "^2.10.1",
-    "eslint-plugin-vue": "^10.8.0",
+    "eslint-plugin-oxlint": "^1.61.0",
+    "eslint-plugin-playwright": "^2.10.2",
+    "eslint-plugin-vue": "^10.9.0",
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "jiti": "^2.6.1",
     "lint-staged": "^16.4.0",
     "npm-run-all2": "^8.0.4",
-    "oxlint": "^1.60.0",
+    "oxlint": "^1.61.0",
     "prettier": "^3.8.3",
     "typescript": "^6.0.3",
-    "vite": "^8.0.8",
+    "vite": "^8.0.10",
     "vite-plugin-pwa": "^1.2.0",
     "vite-plugin-vue-devtools": "^8.1.1",
-    "vue-tsc": "^3.2.6"
+    "vue-tsc": "^3.2.7"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
   },
-  "packageManager": "pnpm@10.33.0+sha512.10568bb4a6afb58c9eb3630da90cc9516417abebd3fabbe6739f0ae795728da1491e9db5a544c76ad8eb7570f5c4bb3d6c637b2cb41bfdcdb47fa823c8649319"
+  "packageManager": "pnpm@10.33.1+sha512.05ba3c1d5d1c18f68df06470d74055e62d41fc110a0c660db1b2dfb2785327f04cf0f68345d4609bc52089e7fa0343c31593b2f9594e2c5d5da426230acc9820"
 }

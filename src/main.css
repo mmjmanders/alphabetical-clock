@@ -1,1 +1,73 @@
+@import './fonts.css';
 @import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Open Sans Variable', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', monospace;
+  --color-border: var(--color-mist-400);
+  --color-primary: var(--color-mist-800);
+  --color-body-background: var(--color-mist-200);
+  --color-clock-background: var(--color-mist-50);
+  --color-second-hand: var(--color-red-500);
+}
+
+@layer components {
+  html,
+  body {
+    @apply bg-body-background text-primary;
+  }
+
+  #app {
+    @apply w-full h-screen grid grid-rows-[4rem_1fr_2rem] gap-4 justify-items-center;
+  }
+
+  header,
+  footer {
+    @apply flex justify-center items-center justify-self-stretch gap-2;
+  }
+
+  header {
+    @apply border-b border-b-border;
+  }
+
+  footer {
+    @apply font-mono border-t border-t-border;
+  }
+
+  main {
+    @apply flex flex-col justify-center items-center justify-self-stretch;
+  }
+
+  h1 {
+    @apply text-4xl font-semibold;
+  }
+
+  .main-content {
+    @apply w-full h-full flex flex-col items-center gap-2;
+  }
+
+  .clock-container {
+    @apply max-w-full h-full flex justify-center aspect-square;
+  }
+
+  .clock-static-content .outer-circle {
+    @apply stroke-primary fill-clock-background;
+  }
+
+  .clock-static-content .hour-text {
+    @apply text-primary text-5xl font-semibold;
+  }
+
+  .clock-static-content path {
+    @apply stroke-primary;
+  }
+
+  .clock-second-hand {
+    @apply transition-transform duration-500 ease-out;
+  }
+
+  .clock-second-hand path,
+  .clock-second-hand circle {
+    @apply stroke-second-hand fill-second-hand;
+  }
+}
