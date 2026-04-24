@@ -62,6 +62,10 @@
     @apply stroke-primary;
   }
 
+  .clock-second-hand {
+    @apply transition-transform duration-500 ease-out;
+  }
+
   .clock-second-hand path,
   .clock-second-hand circle {
     @apply stroke-second-hand fill-second-hand;
