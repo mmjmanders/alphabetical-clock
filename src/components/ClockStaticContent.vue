@@ -18,7 +18,7 @@ const positions = readonly(
 </script>
 
 <template>
-  <g>
+  <g class="clock-static-content">
     <circle :r="radius" stroke-width="5" class="outer-circle" />
     <path
       class="hour-tick"
@@ -49,18 +49,4 @@ const positions = readonly(
   </g>
 </template>
 
-<style scoped>
-@reference './main.css';
-
-.outer-circle {
-  @apply stroke-primary fill-clock-background;
-}
-
-.hour-text {
-  @apply text-primary text-5xl font-semibold;
-}
-
-path {
-  @apply stroke-primary;
-}
-</style>
+<style scoped></style>

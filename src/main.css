@@ -8,6 +8,7 @@
   --color-primary: var(--color-mist-800);
   --color-body-background: var(--color-mist-200);
   --color-clock-background: var(--color-mist-50);
+  --color-second-hand: var(--color-red-500);
 }
 
 @layer components {
@@ -47,5 +48,22 @@
 
   .clock-container {
     @apply max-w-full h-full flex justify-center aspect-square;
+  }
+
+  .clock-static-content .outer-circle {
+    @apply stroke-primary fill-clock-background;
+  }
+
+  .clock-static-content .hour-text {
+    @apply text-primary text-5xl font-semibold;
+  }
+
+  .clock-static-content path {
+    @apply stroke-primary;
+  }
+
+  .clock-second-hand path,
+  .clock-second-hand circle {
+    @apply stroke-second-hand fill-second-hand;
   }
 }
