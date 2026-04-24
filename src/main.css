@@ -9,6 +9,7 @@
   --color-body-background: var(--color-mist-200);
   --color-clock-background: var(--color-mist-50);
   --color-second-hand: var(--color-red-500);
+  --color-hour-hand: var(--color-primary);
 }
 
 @layer components {
@@ -62,8 +63,13 @@
     @apply stroke-primary;
   }
 
-  .clock-second-hand {
+  .clock-second-hand,
+  .clock-hour-hand {
     @apply transition-transform duration-500 ease-out;
+  }
+
+  .clock-hour-hand path {
+    @apply stroke-hour-hand fill-hour-hand;
   }
 
   .clock-second-hand path,
