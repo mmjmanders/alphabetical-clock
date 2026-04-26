@@ -63,12 +63,14 @@
     @apply stroke-primary;
   }
 
-  .clock-second-hand,
-  .clock-hour-hand {
+  .clock-hour-hand,
+  .clock-minute-hand,
+  .clock-second-hand {
     @apply transition-transform duration-500 ease-out;
   }
 
-  .clock-hour-hand path {
+  .clock-hour-hand path,
+  .clock-minute-hand path {
     @apply stroke-hour-hand fill-hour-hand;
   }
 
