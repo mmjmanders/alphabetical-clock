@@ -82,11 +82,16 @@
   }
 
   .language-selector {
-    @apply flex gap-1 justify-center;
+    @apply flex gap-1 items-center justify-center;
   }
 
   .language-selector .lang {
     @apply cursor-pointer text-language;
+  }
+
+  .language-selector .lang + .lang::before {
+    @apply text-language;
+    content: ' | ';
   }
 
   .language-selector .lang.active {
