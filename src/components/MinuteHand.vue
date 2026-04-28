@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import { useWords } from '@/composables'
+import { type Language, useWords } from '@/composables'
 import { computed } from 'vue'
-import { toWords } from 'to-words/en-US'
 
 const props = defineProps<{
   length: number
   minutes: number
+  language: Language
 }>()
 
-const { minutes: minuteWords } = useWords()
-const rotation = computed(() => (360 / 60) * minuteWords.indexOf(toWords(props.minutes)) - 90)
+const words = computed(() => useWords(props.language))
+const rotation = computed(
+  () => (360 / 60) * words.value.minutes.indexOf(words.value.toWords(props.minutes)) - 90,
+)
 </script>
 
 <template>
