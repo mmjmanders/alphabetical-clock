@@ -2,21 +2,29 @@
 import type { Language } from '@/composables'
 
 const language = defineModel<Language>({ default: 'en' })
-
-const changeLanguage = (lang: Language) => {
-  language.value = lang
-}
 </script>
 
 <template>
-  <div class="language-selector">
-    <span class="lang" :class="{ active: language === 'en' }" @click="changeLanguage('en')"
-      >EN</span
+  <div class="language-selector" role="group" aria-label="Select language">
+    <button
+      class="lang"
+      lang="en"
+      :class="{ active: language === 'en' }"
+      :aria-pressed="language === 'en'"
+      @click="language = 'en'"
     >
-    <span>|</span>
-    <span class="lang" :class="{ active: language === 'nl' }" @click="changeLanguage('nl')"
-      >NL</span
+      EN
+    </button>
+    <span aria-hidden="true">|</span>
+    <button
+      class="lang"
+      lang="nl"
+      :class="{ active: language === 'nl' }"
+      :aria-pressed="language === 'nl'"
+      @click="language = 'nl'"
     >
+      NL
+    </button>
   </div>
 </template>
 
