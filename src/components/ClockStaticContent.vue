@@ -6,15 +6,14 @@ const props = defineProps<{
   radius: number
   language: Language
 }>()
-const textRadius = props.radius * 0.8
 
-const { hours } = useWords()
-
+const textRadius = computed(() => props.radius * 0.8)
+const words = computed(() => useWords(props.language))
 const positions = computed(() =>
-  hours[props.language].map((hour, i, arr) => {
+  words.value.hours.map((hour, i, arr) => {
     const angle = (i / arr.length) * (2 * Math.PI) - (2 * Math.PI) / 4
-    const x = textRadius * Math.cos(angle)
-    const y = textRadius * Math.sin(angle)
+    const x = textRadius.value * Math.cos(angle)
+    const y = textRadius.value * Math.sin(angle)
     return { x, y, hour }
   }),
 )
