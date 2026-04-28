@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { useWords } from '@/composables'
-import { readonly } from 'vue'
+import { type Language, useWords } from '@/composables'
+import { computed } from 'vue'
 
-const props = defineProps<{ radius: number }>()
+const props = defineProps<{
+  radius: number
+  language: Language
+}>()
 const textRadius = props.radius * 0.8
 
 const { hours } = useWords()
 
-const positions = readonly(
-  hours.map((hour, i, arr) => {
+const positions = computed(() =>
+  hours[props.language].map((hour, i, arr) => {
     const angle = (i / arr.length) * (2 * Math.PI) - (2 * Math.PI) / 4
     const x = textRadius * Math.cos(angle)
     const y = textRadius * Math.sin(angle)

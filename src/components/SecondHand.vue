@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { useWords } from '@/composables'
+import { type Language, useWords } from '@/composables'
 import { toWords } from 'to-words/en-US'
 import { computed } from 'vue'
 
 const props = defineProps<{
   length: number
   seconds: number
+  language: Language
 }>()
 
 const { seconds: secondWords } = useWords()

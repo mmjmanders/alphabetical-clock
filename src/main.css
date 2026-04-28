@@ -10,6 +10,8 @@
   --color-clock-background: var(--color-mist-50);
   --color-second-hand: var(--color-red-500);
   --color-hour-hand: var(--color-primary);
+  --color-language: var(--color-border);
+  --color-language-active: var(--color-primary);
 }
 
 @layer components {
@@ -77,5 +79,17 @@
   .clock-second-hand path,
   .clock-second-hand circle {
     @apply stroke-second-hand fill-second-hand;
+  }
+
+  .language-selector {
+    @apply flex gap-1 justify-center;
+  }
+
+  .language-selector .lang {
+    @apply cursor-pointer text-language;
+  }
+
+  .language-selector .lang.active {
+    @apply text-language-active;
   }
 }
