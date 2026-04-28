@@ -6,6 +6,7 @@ import HourHand from '@/components/HourHand.vue'
 import MinuteHand from '@/components/MinuteHand.vue'
 import SecondHand from '@/components/SecondHand.vue'
 import LanguageSelector from '@/components/LanguageSelector.vue'
+import TimeDisplay from '@/components/TimeDisplay.vue'
 
 const { time } = useClock()
 const hours = computed(() => time.value.getHours() % 12 || 12)
@@ -26,6 +27,13 @@ const language = ref<Language>('en')
         <SecondHand :length="875" :seconds="seconds" :language="language" />
       </svg>
     </div>
+    <TimeDisplay
+      :time="time"
+      :language="language"
+      :hours="hours"
+      :minutes="minutes"
+      :seconds="seconds"
+    />
   </div>
 </template>
 
