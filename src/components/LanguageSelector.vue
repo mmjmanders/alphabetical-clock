@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Language } from '@/composables'
+import { languages } from '@/composables'
 
 const language = defineModel<Language>({ default: 'en' })
 </script>
@@ -7,23 +8,15 @@ const language = defineModel<Language>({ default: 'en' })
 <template>
   <div class="language-selector" role="group" aria-label="Select language">
     <button
+      v-for="lang in languages"
+      :key="lang"
       class="lang"
-      lang="en"
-      :class="{ active: language === 'en' }"
-      :aria-pressed="language === 'en'"
-      @click="language = 'en'"
+      :lang="lang"
+      :class="{ active: language === lang }"
+      :aria-pressed="language === lang"
+      @click="language = lang"
     >
-      EN
-    </button>
-    <span aria-hidden="true">|</span>
-    <button
-      class="lang"
-      lang="nl"
-      :class="{ active: language === 'nl' }"
-      :aria-pressed="language === 'nl'"
-      @click="language = 'nl'"
-    >
-      NL
+      {{ lang.toUpperCase() }}
     </button>
   </div>
 </template>
