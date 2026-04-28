@@ -97,4 +97,20 @@
   .language-selector .lang.active {
     @apply text-language-active;
   }
+
+  .time-display {
+    @apply grid grid-cols-2 gap-4;
+  }
+
+  .time-display .time {
+    @apply grid grid-rows-2 gap-1 justify-items-center;
+  }
+
+  .time-display .time .time-header {
+    @apply font-semibold;
+  }
+
+  .time-display .time .time-display-time {
+    @apply font-mono text-sm;
+  }
 }
