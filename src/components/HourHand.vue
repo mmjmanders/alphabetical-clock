@@ -13,7 +13,7 @@ const rotation = computed(() => (360 / 12) * hourWords.indexOf(toWords(props.hou
 </script>
 
 <template>
-  <g class="clock-hour-hand" :transform="`rotate(${rotation})`">
+  <g class="clock-hour-hand" :style="{ transform: `rotate(${rotation}deg)` }">
     <path stroke-width="40" stroke-linejoin="round" :d="`M 0 0 L ${length} 0 Z`" />
   </g>
 </template>
