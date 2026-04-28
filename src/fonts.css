@@ -2,7 +2,7 @@
 @font-face {
   font-family: 'Open Sans Variable';
   font-style: normal;
-  font-display: auto;
+  font-display: swap;
   font-weight: 300 800;
   src: url(@fontsource-variable/open-sans/files/open-sans-latin-wght-normal.woff2)
     format('woff2-variations');
@@ -15,7 +15,7 @@
 @font-face {
   font-family: 'JetBrains Mono Variable';
   font-style: normal;
-  font-display: auto;
+  font-display: swap;
   font-weight: 100 800;
   src: url(@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2)
     format('woff2-variations');
