@@ -1,30 +1,32 @@
-import { test } from './clock-fixture'
-import { expect } from '@playwright/test'
+describe('time display', () => {
+  beforeEach(() => {
+    cy.clock(new Date('2026-04-28T13:34:12.000+02:00'))
+    cy.visit('/')
+  })
 
-test('should have time display visible', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.time-display')).toBeVisible()
-})
+  it('should have time display visible', () => {
+    cy.get('.time-display').should('be.visible')
+  })
 
-test('should display 2 different times', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.time-display .time')).toHaveCount(2)
-})
+  it('should display 2 different times', () => {
+    cy.get('.time-display .time').should('have.length', 2)
+  })
 
-/* Parmeterized test */
-;[
-  { language: 'EN', alphabeticalTime: '05:39:47' },
-  { language: 'NL', alphabeticalTime: '02:37:27' },
-  { language: 'ES', alphabeticalTime: '11:40:29' },
-  { language: 'DE', alphabeticalTime: '02:46:59' },
-  { language: 'FR', alphabeticalTime: '11:43:16' },
-].forEach(({ language, alphabeticalTime }) => {
-  test(`should display ${alphabeticalTime} for language ${language}`, async ({ page }) => {
-    await page.goto('/')
-    await page.locator(`.language-selector .lang:has-text('${language}')`).click()
-    await expect(page.locator('.time-display .time-display-time')).toHaveText([
-      '13:34:12',
-      alphabeticalTime,
-    ])
+  /* Parameterized test */
+  ;[
+    { language: 'EN', alphabeticalTime: '05:39:47' },
+    { language: 'NL', alphabeticalTime: '02:37:27' },
+    { language: 'ES', alphabeticalTime: '11:40:29' },
+    { language: 'DE', alphabeticalTime: '02:46:59' },
+    { language: 'FR', alphabeticalTime: '11:43:16' },
+  ].forEach(({ language, alphabeticalTime }) => {
+    it(`should display ${alphabeticalTime} for language ${language}`, () => {
+      cy.contains('.language-selector .lang', language).click()
+      cy.get('.time-display .time-display-time').then((elements) => {
+        expect(elements).to.have.length(2)
+        expect(elements[0]).to.have.text('13:34:12')
+        expect(elements[1]).to.have.text(alphabeticalTime)
+      })
+    })
   })
 })

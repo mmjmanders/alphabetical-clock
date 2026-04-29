@@ -1,51 +1,49 @@
-import { test, expect } from '@playwright/test'
-
-test('should display language selector', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.language-selector')).toBeVisible()
-})
-
-test('should display 5 languages', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.language-selector .lang')).toHaveCount(5)
-})
-
-test('should have 1 active language', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.language-selector .lang.active')).toHaveCount(1)
-})
-
-test('should have English as default active language', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.language-selector .lang.active')).toHaveText('EN')
-})
-
-/* Parameterized test */
-;[
-  { language: 'EN' },
-  { language: 'NL' },
-  { language: 'ES' },
-  { language: 'DE' },
-  { language: 'FR' },
-].forEach(({ language }) => {
-  test(`should have ${language} as selected language`, async ({ page }) => {
-    await page.goto('/')
-    await page.locator(`.language-selector .lang:has-text('${language}')`).click()
-    await expect(page.locator('.language-selector .lang.active')).toHaveText(language)
+describe('language selector', () => {
+  beforeEach(() => {
+    cy.visit('/')
   })
-})
 
-/* Parameterized test */
-;[
-  { language: 'EN', expectedText: 'Nine' },
-  { language: 'NL', expectedText: 'Zeven' },
-  { language: 'ES', expectedText: 'Cuatro' },
-  { language: 'DE', expectedText: 'Fünf' },
-  { language: 'FR', expectedText: 'Trois' },
-].forEach(({ language, expectedText }) => {
-  test(`should have ${expectedText} for hours in ${language}`, async ({ page }) => {
-    await page.goto('/')
-    await page.locator(`.language-selector .lang:has-text('${language}')`).click()
-    await expect(page.locator('.hour-text', { hasText: expectedText })).toBeVisible()
+  it('should have language selector visible', () => {
+    cy.get('.language-selector').should('be.visible')
+  })
+
+  it('should display 5 languages', () => {
+    cy.get('.language-selector .lang').should('have.length', 5)
+  })
+
+  it('should have 1 active language', () => {
+    cy.get('.language-selector .lang.active').should('have.length', 1)
+  })
+
+  it('should have English as default active language', () => {
+    cy.get('.language-selector .lang.active').should('have.text', 'EN')
+  })
+
+  /* Parameterized test */
+  ;[
+    { language: 'EN' },
+    { language: 'NL' },
+    { language: 'ES' },
+    { language: 'DE' },
+    { language: 'FR' },
+  ].forEach(({ language }) => {
+    it(`should have ${language} as selected language`, () => {
+      cy.contains('.language-selector .lang', language).click()
+      cy.get('.language-selector .lang.active').should('have.text', language)
+    })
+  })
+
+  /* Parameterized test */
+  ;[
+    { language: 'EN', expectedText: 'Nine' },
+    { language: 'NL', expectedText: 'Zeven' },
+    { language: 'ES', expectedText: 'Cuatro' },
+    { language: 'DE', expectedText: 'Fünf' },
+    { language: 'FR', expectedText: 'Trois' },
+  ].forEach(({ language, expectedText }) => {
+    it(`should have ${expectedText} for hours in ${language}`, () => {
+      cy.contains('.language-selector .lang', language).click()
+      cy.contains('.hour-text', expectedText).should('be.visible')
+    })
   })
 })

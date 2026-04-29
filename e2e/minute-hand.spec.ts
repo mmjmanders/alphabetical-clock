@@ -1,7 +1,9 @@
-import { expect } from '@playwright/test'
-import { test } from './clock-fixture'
+describe('minute hand', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
 
-test('should have minute hand visible', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.clock-minute-hand')).toBeVisible()
+  it('should have minute hand visible', () => {
+    cy.get('.clock-minute-hand').should('be.visible')
+  })
 })

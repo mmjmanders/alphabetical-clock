@@ -1,6 +1,9 @@
-import { test, expect } from '@playwright/test'
+describe('version', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
 
-test('has version', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('footer')).toContainText('e2e')
+  it('should have version', () => {
+    cy.get('footer').should('contain.text', 'e2e')
+  })
 })
