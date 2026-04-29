@@ -41,7 +41,6 @@ jobs:
           cache: true
           run_install: |
             - args: [--prefer-offline, --frozen-lockfile]
-      - run: pnpm exec playwright install chrome msedge
       - run: pnpm build-only --mode e2e
       - run: pnpm test:e2e --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
         env:
