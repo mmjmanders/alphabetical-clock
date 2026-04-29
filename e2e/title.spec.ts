@@ -1,11 +1,13 @@
-import { expect, test } from '@playwright/test'
+describe('title', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
 
-test('should have correct title', async ({ page }) => {
-  await page.goto('/')
-  await expect(page).toHaveTitle('Alphabetical Clock')
-})
+  it('should have correct title', () => {
+    cy.title().should('equal', 'Alphabetical Clock')
+  })
 
-test('should have correct heading', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('h1')).toHaveText('Alphabetical Clock')
+  it('should have correct heading', () => {
+    cy.get('h1').should('have.text', 'Alphabetical Clock')
+  })
 })

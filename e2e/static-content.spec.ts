@@ -1,16 +1,17 @@
-import { expect, test } from '@playwright/test'
+describe('static content', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
 
-test('should display hour texts', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.hour-text')).toHaveCount(12)
-})
+  it('should display hour texts', () => {
+    cy.get('.hour-text').should('have.length', 12)
+  })
 
-test('should display hour ticks', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.hour-tick')).toHaveCount(12)
-})
+  it('should display hour ticks', () => {
+    cy.get('.hour-tick').should('have.length', 12)
+  })
 
-test('should display minute ticks', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.locator('.minute-tick')).toHaveCount(60)
+  it('should display minute ticks', () => {
+    cy.get('.minute-tick').should('have.length', 60)
+  })
 })
