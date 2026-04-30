@@ -61,10 +61,12 @@ jobs:
         with:
           name: e2e-build
           path: dist/
+      - run: |
+          ln -sf /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
       - uses: cypress-io/github-action@v7
         env:
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
-          start: cat /etc/localtime && pnpm preview
+          start: pnpm preview
           browser: ${{ matrix.browser }}
