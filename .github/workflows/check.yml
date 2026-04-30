@@ -61,9 +61,6 @@ jobs:
         with:
           name: e2e-build
           path: dist/
-      - name: set timezone
-        run: |
-          sudo ln -sf /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime
       - uses: cypress-io/github-action@v7
         env:
           TZ: Europe/Amsterdam
