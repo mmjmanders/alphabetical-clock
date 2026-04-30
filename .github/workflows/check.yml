@@ -61,6 +61,7 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: e2e-build
+          path: dist/
       - uses: cypress-io/github-action@v7
         env:
           TZ: Europe/Amsterdam
