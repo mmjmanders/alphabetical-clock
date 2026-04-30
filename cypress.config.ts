@@ -6,9 +6,6 @@ export default defineConfig({
     baseUrl: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5173',
   },
   component: {
-    supportFile: 'tests/support.ts',
-    indexHtmlFile: 'tests/index.html',
-    specPattern: 'tests/**/*.spec.ts',
     devServer: {
       framework: 'vue',
       bundler: 'vite',
