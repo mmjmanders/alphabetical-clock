@@ -1,8 +1,4 @@
 describe('language selector', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
-
   it('should have language selector visible', () => {
     cy.get('.language-selector').should('be.visible')
   })
