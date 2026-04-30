@@ -56,8 +56,7 @@ jobs:
       - uses: pnpm/action-setup@v5
         with:
           cache: true
-          run_install: |
-            - args: [--prefer-offline, --frozen-lockfile]
+          run_install: false
       - uses: actions/download-artifact@v8
         with:
           name: e2e-build
@@ -67,5 +66,5 @@ jobs:
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
-          start: npm run preview
+          start: pnpm preview
           browser: ${{ matrix.browser }}
