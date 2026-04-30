@@ -21,9 +21,7 @@ jobs:
             .eslintcache
       - run: pnpm check
 
-  e2e:
-    needs: check
-    timeout-minutes: 60
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -36,9 +34,37 @@ jobs:
           run_install: |
             - args: [--prefer-offline, --frozen-lockfile]
       - run: pnpm build-only --mode e2e
+      - uses: actions/upload-artifact@v7
+        with:
+          name: e2e-build
+          path: dist/
+          overwrite: true
+
+  e2e:
+    needs: build
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [ chrome, edge, firefox ]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v5
+        with:
+          cache: true
+          run_install: false
+      - uses: actions/download-artifact@v8
+        with:
+          name: e2e-build
+          path: dist/
       - uses: cypress-io/github-action@v7
         env:
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
           start: pnpm preview
+          browser: ${{ matrix.browser }}

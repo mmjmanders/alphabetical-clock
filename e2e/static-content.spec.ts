@@ -1,8 +1,4 @@
 describe('static content', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
-
   it('should display hour texts', () => {
     cy.get('.hour-text').should('have.length', 12)
   })
