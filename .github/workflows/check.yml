@@ -66,5 +66,5 @@ jobs:
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
-          start: pnpm preview
+          start: cat /etc/localtime && pnpm preview
           browser: ${{ matrix.browser }}
