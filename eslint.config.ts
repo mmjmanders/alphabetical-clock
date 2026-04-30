@@ -23,7 +23,7 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginCypress.configs['recommended'],
-    files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+    files: ['cypress/**/*.cy.{js,ts,jsx,tsx}'],
   },
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),
@@ -38,6 +38,7 @@ export default defineConfigWithVueTs(
           allow: ['warn', 'error'],
         },
       ],
+      '@typescript-eslint/no-namespace': 'off',
     },
   },
 )
