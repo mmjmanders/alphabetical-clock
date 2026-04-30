@@ -2,11 +2,11 @@ import TimeDisplay from '@/components/TimeDisplay.vue'
 import type { Language } from '@/composables'
 
 describe('TimeDisplay', () => {
-  const time = new Date('2026-04-28T13:34:12.000+02:00')
+  let time: Date
 
-  it('should have time display available', () => {
+  beforeEach(() => {
+    time = new Date('2026-04-28T13:34:12.000+02:00')
     cy.mount(TimeDisplay, {
-      shallow: true,
       props: {
         time,
         language: 'en',
@@ -15,20 +15,13 @@ describe('TimeDisplay', () => {
         seconds: time.getSeconds(),
       },
     })
+  })
+
+  it('should have time display visible', () => {
     cy.get('.time-display').should('be.visible')
   })
 
   it('should display 2 different times', () => {
-    cy.mount(TimeDisplay, {
-      shallow: true,
-      props: {
-        time,
-        language: 'en',
-        hours: time.getHours() % 12 || 12,
-        minutes: time.getMinutes(),
-        seconds: time.getSeconds(),
-      },
-    })
     cy.get('.time-display .time').should('have.length', 2)
   })
 
@@ -42,7 +35,6 @@ describe('TimeDisplay', () => {
   ].forEach(({ language, alphabeticalTime }) => {
     it(`should display ${alphabeticalTime} for language ${language}`, () => {
       cy.mount(TimeDisplay, {
-        shallow: true,
         props: {
           time,
           language: language.toLowerCase() as Language,
