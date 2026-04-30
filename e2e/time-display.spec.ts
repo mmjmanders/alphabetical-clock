@@ -17,8 +17,8 @@ describe('time display', () => {
   ].forEach(({ language, alphabeticalTime }) => {
     it(`should display ${alphabeticalTime} for language ${language}`, () => {
       cy.contains('.language-selector .lang', language).click()
-      cy.contains('.time-display .time-display-time', '13:34:12').should('exist')
-      cy.contains('.time-display .time-display-time', alphabeticalTime).should('exist')
+      cy.contains('.time-display .time-display-time', '13:34:12').should('be.visible')
+      cy.contains('.time-display .time-display-time', alphabeticalTime).should('be.visible')
     })
   })
 })
