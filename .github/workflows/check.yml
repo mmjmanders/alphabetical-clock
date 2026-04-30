@@ -21,26 +21,8 @@ jobs:
             .eslintcache
       - run: pnpm check
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version-file: .nvmrc
-      - uses: pnpm/action-setup@v5
-        with:
-          cache: true
-          run_install: |
-            - args: [--prefer-offline, --frozen-lockfile]
-      - run: pnpm build-only --mode e2e
-      - uses: actions/upload-artifact@v7
-        with:
-          name: e2e-build
-          path: dist/
-          overwrite: true
-
   test:
+    needs: check
     timeout-minutes: 60
     runs-on: ubuntu-latest
     strategy:
@@ -64,6 +46,26 @@ jobs:
           package-manager-cache: false
           component: true
           browser: ${{ matrix.browser }}
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v5
+        with:
+          cache: true
+          run_install: |
+            - args: [--prefer-offline, --frozen-lockfile]
+      - run: pnpm build-only --mode e2e
+      - uses: actions/upload-artifact@v7
+        with:
+          name: e2e-build
+          path: dist/
+          overwrite: true
 
   e2e:
     needs: build
