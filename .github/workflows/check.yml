@@ -25,6 +25,9 @@ jobs:
     needs: check
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: [ chrome, edge, firefox ]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -42,3 +45,4 @@ jobs:
         with:
           package-manager-cache: false
           start: pnpm preview
+          browser: ${{ matrix.browser }}

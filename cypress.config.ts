@@ -2,7 +2,7 @@ import { defineConfig } from 'cypress'
 
 export default defineConfig({
   allowCypressEnv: false,
-  defaultBrowser: 'chrome',
+  // defaultBrowser: 'chrome',
   e2e: {
     supportFile: false,
     specPattern: 'e2e/**/*.spec.ts',
