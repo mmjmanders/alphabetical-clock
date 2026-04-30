@@ -1,4 +1,5 @@
-import TimeDisplay from '../components/TimeDisplay.vue'
+import TimeDisplay from '@/components/TimeDisplay.vue'
+import type { Language } from '@/composables'
 
 describe('TimeDisplay', () => {
   const time = new Date('2026-04-28T13:34:12.000+02:00')
@@ -44,7 +45,7 @@ describe('TimeDisplay', () => {
         shallow: true,
         props: {
           time,
-          language: language.toLowerCase(),
+          language: language.toLowerCase() as Language,
           hours: time.getHours() % 12 || 12,
           minutes: time.getMinutes(),
           seconds: time.getSeconds(),
