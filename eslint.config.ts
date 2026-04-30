@@ -23,7 +23,7 @@ export default defineConfigWithVueTs(
 
   {
     ...pluginCypress.configs['recommended'],
-    files: ['cypress/**/*.cy.{js,ts,jsx,tsx}'],
+    files: ['**/*.cy.{js,ts,jsx,tsx}'],
   },
 
   ...pluginOxlint.buildFromOxlintConfigFile('.oxlintrc.json'),

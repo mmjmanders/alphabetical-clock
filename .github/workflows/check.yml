@@ -40,6 +40,31 @@ jobs:
           path: dist/
           overwrite: true
 
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [ chrome, edge, firefox ]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+      - uses: pnpm/action-setup@v5
+        with:
+          cache: true
+          run_install: |
+            - args: [--prefer-offline, --frozen-lockfile]
+      - uses: cypress-io/github-action@v7
+        env:
+          TZ: Europe/Amsterdam
+        with:
+          package-manager-cache: false
+          component: true
+          browser: ${{ matrix.browser }}
+
   e2e:
     needs: build
     timeout-minutes: 60

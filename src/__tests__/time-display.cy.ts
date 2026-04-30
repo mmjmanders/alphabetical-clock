@@ -1,4 +1,4 @@
-import TimeDisplay from '../src/components/TimeDisplay.vue'
+import TimeDisplay from '../components/TimeDisplay.vue'
 
 describe('TimeDisplay', () => {
   const time = new Date('2026-04-28T13:34:12.000+02:00')
