@@ -1,7 +1,13 @@
 describe('time display', () => {
   beforeEach(() => {
-    cy.clock(new Date('2026-04-28T13:34:12.000+02:00'))
+    cy.clock(new Date('2026-04-28T13:34:12.000+02:00').getTime())
     cy.visit('/')
+  })
+
+  afterEach(() => {
+    cy.clock().then((clock) => {
+      clock.restore()
+    })
   })
 
   it('should have time display visible', () => {
