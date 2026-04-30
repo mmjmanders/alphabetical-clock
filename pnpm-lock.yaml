@@ -5,8 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  serialize-javascript@<7.0.5: '>=7.0.5'
   serialize-javascript@<=7.0.2: '>=7.0.3'
+  serialize-javascript@<7.0.5: '>=7.0.5'
+  uuid@<14.0.0: '>=14.0.0'
 
 importers:
 
@@ -2997,8 +2998,8 @@ packages:
   throttleit@1.0.1:
     resolution: {integrity: sha512-vDZpf9Chs9mAdfY046mcPt8fg5QSZr37hEH4TXYBnDF+izxgrbRGUAAaBvIk/fJm9aOFCGFd1EsNg5AZCbnQCQ==}
 
-  tinyexec@1.1.1:
-    resolution: {integrity: sha512-VKS/ZaQhhkKFMANmAOhhXVoIfBXblQxGX1myCQ2faQrfmobMftXeJPcZGp0gS07ocvGJWDLZGyOZDadDBqYIJg==}
+  tinyexec@1.1.2:
+    resolution: {integrity: sha512-dAqSqE/RabpBKI8+h26GfLq6Vb3JVXs30XYQjdMjaj/c2tS8IYYMbIzP599KtRj7c57/wYApb3QjgRgXmrCukA==}
     engines: {node: '>=18'}
 
   tinyglobby@0.2.16:
@@ -3153,9 +3154,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  uuid@8.3.2:
-    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
-    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
+  uuid@14.0.0:
+    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
     hasBin: true
 
   verror@1.10.0:
@@ -4107,7 +4107,7 @@ snapshots:
       safe-buffer: 5.2.1
       tough-cookie: 5.1.2
       tunnel-agent: 0.6.0
-      uuid: 8.3.2
+      uuid: 14.0.0
 
   '@cypress/xvfb@1.2.4(supports-color@8.1.1)':
     dependencies:
@@ -5851,7 +5851,7 @@ snapshots:
       listr2: 9.0.5
       picomatch: 4.0.4
       string-argv: 0.3.2
-      tinyexec: 1.1.1
+      tinyexec: 1.1.2
       yaml: 2.8.3
 
   listr2@9.0.5:
@@ -6474,7 +6474,7 @@ snapshots:
 
   throttleit@1.0.1: {}
 
-  tinyexec@1.1.1: {}
+  tinyexec@1.1.2: {}
 
   tinyglobby@0.2.16:
     dependencies:
@@ -6623,7 +6623,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  uuid@8.3.2: {}
+  uuid@14.0.0: {}
 
   verror@1.10.0:
     dependencies:
