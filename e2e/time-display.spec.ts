@@ -28,8 +28,11 @@ describe('time display', () => {
   ].forEach(({ language, alphabeticalTime }) => {
     it(`should display ${alphabeticalTime} for language ${language}`, () => {
       cy.contains('.language-selector .lang', language).click()
-      cy.contains('.time-display .time-display-time', '13:34:12').should('exist')
-      cy.contains('.time-display .time-display-time', alphabeticalTime).should('exist')
+      cy.get('.time-display .time-display-time').then((elements) => {
+        expect(elements).to.have.length(2)
+        expect(elements[0]).to.have.text('13:34:12')
+        expect(elements[1]).to.have.text(alphabeticalTime)
+      })
     })
   })
 })
