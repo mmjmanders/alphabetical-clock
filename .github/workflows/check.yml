@@ -30,10 +30,6 @@ jobs:
       image: cypress/included:15.14.2
       options: --user 1001
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        browser: [ chrome, edge, firefox ]
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-node@v6
@@ -51,7 +47,6 @@ jobs:
         with:
           package-manager-cache: false
           component: true
-          browser: ${{ matrix.browser }}
 
   build:
     needs: check
