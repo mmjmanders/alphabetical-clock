@@ -13,17 +13,22 @@ jobs:
         with:
           cache: true
           run_install: |
-            - args: [--prefer-offline, --frozen-lockfile]
+            - args: [--prefer-offline, --frozen-lockfile, --ignore-scripts]
       - uses: actions/cache@v5
         with:
           key: eslint-cache-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('pnpm-lock.yaml', 'eslint.config.ts') }}
+          restore-keys: |
+            eslint-cache-
           path: |
             .eslintcache
       - run: pnpm check
 
   test:
-    needs: check
+    needs: build
     timeout-minutes: 60
+    container:
+      image: cypress/included:15.14.2
+      options: --user 1001
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -38,9 +43,10 @@ jobs:
         with:
           cache: true
           run_install: |
-            - args: [--prefer-offline, --frozen-lockfile]
+            - args: [--prefer-offline, --frozen-lockfile, --ignore-scripts]
       - uses: cypress-io/github-action@v7
         env:
+          CYPRESS_INSTALL_BINARY: 0
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
@@ -48,7 +54,7 @@ jobs:
           browser: ${{ matrix.browser }}
 
   build:
-    needs: test
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -59,7 +65,7 @@ jobs:
         with:
           cache: true
           run_install: |
-            - args: [--prefer-offline, --frozen-lockfile]
+            - args: [--prefer-offline, --frozen-lockfile, --ignore-scripts]
       - run: pnpm build-only --mode e2e
       - uses: actions/upload-artifact@v7
         with:
@@ -70,6 +76,9 @@ jobs:
   e2e:
     needs: build
     timeout-minutes: 60
+    container:
+      image: cypress/included:15.14.2
+      options: --user 1001
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -90,6 +99,7 @@ jobs:
           path: dist/
       - uses: cypress-io/github-action@v7
         env:
+          CYPRESS_INSTALL_BINARY: 0
           TZ: Europe/Amsterdam
         with:
           package-manager-cache: false
